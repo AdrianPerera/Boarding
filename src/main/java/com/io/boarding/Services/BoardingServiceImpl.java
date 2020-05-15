@@ -12,5 +12,5 @@ public interface BoardingServiceImpl {
     List<Boarding> getBoardingsByUserName(String userName);
     List<Boarding> getBoardingByNoOfRooms(Integer no);
     List<Boarding> getBoardingsByAvailability();
-
+    List<Boarding> getBoardingsByNoOfBeds(Integer noOfBeds);
 }

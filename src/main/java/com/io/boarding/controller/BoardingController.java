@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
+import java.util.function.BinaryOperator;
 
 @Controller
 @RequestMapping("/boarding")
@@ -39,6 +41,10 @@ public class BoardingController {
     @GetMapping(value = "/get/available")
     public @ResponseBody List<Boarding> getBoardingByAvailability( ){
         return boardingService.getBoardingsByAvailability();
+    }
+    @GetMapping(value = "/get/beds/{no}")
+    public @ResponseBody List<Boarding> getBoardingsByNoOfBeds(@PathVariable Integer no){
+        return boardingService.getBoardingsByNoOfBeds(no);
     }
 
 }

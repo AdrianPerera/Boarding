@@ -1,16 +1,21 @@
 package com.io.boarding.Services;
 
 import com.io.boarding.Data.Boarding;
+import com.io.boarding.Data.Room;
 import com.io.boarding.repository.BoardingRepository;
+import com.io.boarding.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class BoardingService implements BoardingServiceImpl {
     @Autowired
     BoardingRepository boardingRepo;
+    @Autowired
+    RoomRepository roomRepository;
 
     @Override
     public void addBoarding(Boarding boarding) {
@@ -50,5 +55,22 @@ public class BoardingService implements BoardingServiceImpl {
     public List<Boarding> getBoardingsByAvailability() {
         return boardingRepo.findAllByAvailabilityIsTrue();
     }
+
+    public List<Boarding> getBoardingsByNoOfBeds(Integer noOfBeds){
+        List<Boarding> boardingList=new ArrayList<>();
+        List<Boarding> boardings=boardingRepo.findAll();
+        for (Boarding boarding:boardings
+             ) {
+            for(Room room:boarding.getRooms()){
+                if(room.getNoOfBeds().equals(noOfBeds)){
+                    boardingList.add(boarding);
+                    break;
+
+                }
+            }
+        }
+        return boardingList;
+    }
+
 }
 

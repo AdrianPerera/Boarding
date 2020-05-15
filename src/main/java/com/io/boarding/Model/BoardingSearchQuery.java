@@ -1,12 +1,12 @@
 package com.io.boarding.Model;
 
-public class SearchQuery {
+public class BoardingSearchQuery {
     private String address;
     private Integer roomNos;
     private Boolean availability;
     private String userName;
 
-    public SearchQuery(String address, Integer roomNos, Boolean availability, String userName) {
+    public BoardingSearchQuery(String address, Integer roomNos, Boolean availability, String userName) {
         this.address = address;
         this.roomNos = roomNos;
         this.availability = availability;

@@ -9,4 +9,5 @@ public interface BoardingRepository extends JpaRepository<Boarding,Integer> {
     List<Boarding> findAllByUser_UserName(String userName);
     List<Boarding> findAllByNoOfRooms(Integer noOfRooms);
     List<Boarding> findAllByAvailabilityIsTrue();
+
 }
