@@ -1,22 +1,26 @@
 package com.io.boarding.controller;
 
 import com.io.boarding.Data.Boarding;
-import com.io.boarding.Data.User;
 import com.io.boarding.Services.BoardingService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.io.boarding.Services.RoomService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.criteria.CriteriaBuilder;
+
 import java.util.List;
-import java.util.function.BinaryOperator;
+
 
 @Controller
 @RequestMapping("/boarding")
 public class BoardingController {
 
-    @Autowired
-    BoardingService boardingService;
+    final BoardingService boardingService;
+    final RoomService roomService;
+
+    public BoardingController(BoardingService boardingService, RoomService roomService) {
+        this.boardingService = boardingService;
+        this.roomService = roomService;
+    }
 
     @PostMapping(value = "/add")
     public @ResponseBody String saveUser(@RequestBody Boarding boarding) {
@@ -42,9 +46,15 @@ public class BoardingController {
     public @ResponseBody List<Boarding> getBoardingByAvailability( ){
         return boardingService.getBoardingsByAvailability();
     }
-    @GetMapping(value = "/get/beds/{no}")
-    public @ResponseBody List<Boarding> getBoardingsByNoOfBeds(@PathVariable Integer no){
-        return boardingService.getBoardingsByNoOfBeds(no);
+
+    @DeleteMapping(value = "/delete/{id}")
+    public @ResponseBody String deleteBoardingWithRooms(@PathVariable Integer id){
+        try {
+            boardingService.deleteBoardingById(id);
+            return "success";
+        }catch (Error e){
+            return e.getMessage();
+        }
     }
 
 }

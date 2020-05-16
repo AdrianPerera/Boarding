@@ -7,8 +7,9 @@ import java.util.List;
 
 public interface UserServiceImpl{
      void addUser(User user);
-     public void changePassword(User user);
-     public Boolean checkPassword(User oldUser, UserForm newUser);
+     void changePassword(User user);
+     void deleteUserById(String userName);
+     Boolean checkPassword(User oldUser, UserForm newUser);
      User getUser(String userName);
      List<User> getAllUsers();
      boolean userExists(String userName);

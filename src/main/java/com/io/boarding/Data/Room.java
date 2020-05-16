@@ -16,6 +16,11 @@ public class Room {
     private Boolean availability;
     private Integer noOfBeds;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "boarding_id",nullable = false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    private Boarding boarding;
+
     public Room() {
     }
 

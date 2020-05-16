@@ -56,4 +56,9 @@ public class UserController {
         }
     }
 
+    @DeleteMapping(value = "/delete/{userName}")
+    public @ResponseBody String deleteUser(@PathVariable String userName){
+        userService.deleteUserById(userName);
+        return "success";
+    }
 }

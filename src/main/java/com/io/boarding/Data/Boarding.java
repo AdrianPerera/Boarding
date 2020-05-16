@@ -24,20 +24,16 @@ public class Boarding {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private User user;
 
-    @OneToMany
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private List<Room> rooms;
-
     public Boarding() {
     }
 
-    public Boarding(Integer id, String address, Integer noOfRooms, Boolean availability, User user, List<Room> rooms) {
+    public Boarding(Integer id, String address, Integer noOfRooms, Boolean availability, User user) {
         this.id = id;
         this.address = address;
         this.noOfRooms = noOfRooms;
         this.availability = availability;
         this.user = user;
-        this.rooms = rooms;
+
     }
 
     public Integer getId() {
@@ -80,11 +76,4 @@ public class Boarding {
         this.user = user;
     }
 
-    public List<Room> getRooms() {
-        return rooms;
-    }
-
-    public void setRooms(List<Room> rooms) {
-        this.rooms = rooms;
-    }
 }
